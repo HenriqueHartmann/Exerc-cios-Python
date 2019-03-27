@@ -65,25 +65,29 @@ def data_valida(data):
     dia = int(line[0])
     mes = int(line[1])
     ano = int(line[2])
-    pi = int(mes) % 2
-    anobi = ano_bissexto(ano)	
-    if(dia >= 1 and dia <= 31):
-    	if(mes >= 1 and mes <=12):
-    		if(pi == 0 and dia <= 30):
-    			return True
-    		elif(pi == 1 and dia <= 31):
-    			return True			
-    		else:
-    			return False		
-    	else:
-    		return False
+    anobi = ano_bissexto(ano)
+    diasnomes = ['', 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    if(mes >= 1 and mes <= 12 and ano != 0):
+        if(dia >=1 and dia <= diasnomes[mes]):
+            teste1 = 'True'
+        else:
+            teste1 = 'False'
     else:
-    	return False	
-    # elif(mes == 2 and dia <= 29 and anobi == True):
-    # 				return True
-    # 		elif(mes == 2 and dia <= 28 and anobi == False):
-    # 				return True
-
+        teste1 = 'False'
+    if (mes == 2 and dia <= 28 and anobi == False):
+        teste2 = 'True'
+    elif(mes == 2 and dia <= 29 and anobi == True):
+        teste2 = 'True'
+    elif(mes != 2):
+        teste2 = 'True'
+    else:
+        teste2 = 'False'
+    if(teste1 == 'True'and teste2 == 'True'):
+        return True
+    elif(teste1 == 'True'and teste2 == 'True'):
+        return False
+    else:
+        return False
 
 def maior3(a, b, c):
     ''' Recebe tres valores, e retorna o maior dos tres'''
@@ -134,44 +138,44 @@ def test(obtido, esperado):
 
 
 def main():
-    # print('Média final:')
-    # test(media_final_aprovado_reprovado(10, 10, 0, 0), True)
-    # test(media_final_aprovado_reprovado(0, 0, 10, 10), False)
-    # test(media_final_aprovado_reprovado(10, 10, 10, 10), True)
-    # test(media_final_aprovado_reprovado(0, 0, 5, 0), False)
-    # test(media_final_aprovado_reprovado(8.0, 7.0, 9.0, 8.0), True)
+    print('Média final:')
+    test(media_final_aprovado_reprovado(10, 10, 0, 0), True)
+    test(media_final_aprovado_reprovado(0, 0, 10, 10), False)
+    test(media_final_aprovado_reprovado(10, 10, 10, 10), True)
+    test(media_final_aprovado_reprovado(0, 0, 5, 0), False)
+    test(media_final_aprovado_reprovado(8.0, 7.0, 9.0, 8.0), True)
 
-    # print('Pesca em excesso:')
-    # test(excesso_peso_peixes(10, 50), 0)
-    # test(excesso_peso_peixes(50, 50), 0)
-    # test(excesso_peso_peixes(50.01, 50), 0.01)
-    # test(excesso_peso_peixes(190.99, 50), 140.99)
+    print('Pesca em excesso:')
+    test(excesso_peso_peixes(10, 50), 0)
+    test(excesso_peso_peixes(50, 50), 0)
+    test(excesso_peso_peixes(50.01, 50), 0.01)
+    test(excesso_peso_peixes(190.99, 50), 140.99)
 
-    # print('Triângulos:')
-    # test(testa_lados(7, 1, 2), 'Não forma um triângulo')
-    # test(testa_lados(7, 2, 1), 'Não forma um triângulo')
-    # test(testa_lados(1, 7, 2), 'Não forma um triângulo')
-    # test(testa_lados(1, 2, 7), 'Não forma um triângulo')
-    # test(testa_lados(2, 1, 7), 'Não forma um triângulo')
-    # test(testa_lados(2, 7, 1), 'Não forma um triângulo')
-    # test(testa_lados(2, 2, 2), 'Triângulo equilátero')
-    # test(testa_lados(3, 3, 3), 'Triângulo equilátero')
-    # test(testa_lados(2, 3, 4), 'Triângulo escaleno')
-    # test(testa_lados(2, 4, 3), 'Triângulo escaleno')
-    # test(testa_lados(3, 4, 2), 'Triângulo escaleno')
-    # test(testa_lados(3, 2, 4), 'Triângulo escaleno')
-    # test(testa_lados(2, 3, 3), 'Triângulo isósceles')
-    # test(testa_lados(3, 2, 2), 'Triângulo isósceles')
-    # test(testa_lados(3, 3, 2), 'Triângulo isósceles')
-    # test(testa_lados(3, 2, 3), 'Triângulo isósceles')
+    print('Triângulos:')
+    test(testa_lados(7, 1, 2), 'Não forma um triângulo')
+    test(testa_lados(7, 2, 1), 'Não forma um triângulo')
+    test(testa_lados(1, 7, 2), 'Não forma um triângulo')
+    test(testa_lados(1, 2, 7), 'Não forma um triângulo')
+    test(testa_lados(2, 1, 7), 'Não forma um triângulo')
+    test(testa_lados(2, 7, 1), 'Não forma um triângulo')
+    test(testa_lados(2, 2, 2), 'Triângulo equilátero')
+    test(testa_lados(3, 3, 3), 'Triângulo equilátero')
+    test(testa_lados(2, 3, 4), 'Triângulo escaleno')
+    test(testa_lados(2, 4, 3), 'Triângulo escaleno')
+    test(testa_lados(3, 4, 2), 'Triângulo escaleno')
+    test(testa_lados(3, 2, 4), 'Triângulo escaleno')
+    test(testa_lados(2, 3, 3), 'Triângulo isósceles')
+    test(testa_lados(3, 2, 2), 'Triângulo isósceles')
+    test(testa_lados(3, 3, 2), 'Triângulo isósceles')
+    test(testa_lados(3, 2, 3), 'Triângulo isósceles')
 
-    # print('Ano bissexto:')
-    # test(ano_bissexto(1000), False)
-    # test(ano_bissexto(1200), True)
-    # test(ano_bissexto(1004), True)
-    # test(ano_bissexto(1040), True)
-    # test(ano_bissexto(2012), True)
-    # test(ano_bissexto(2014), False)
+    print('Ano bissexto:')
+    test(ano_bissexto(1000), False)
+    test(ano_bissexto(1200), True)
+    test(ano_bissexto(1004), True)
+    test(ano_bissexto(1040), True)
+    test(ano_bissexto(2012), True)
+    test(ano_bissexto(2014), False)
 
     print('Valida datas:')
     test(data_valida("01/01/2014"), True)

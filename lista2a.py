@@ -2,7 +2,7 @@
 # coding: utf-8
 # Marco André <marcoandre@ifc-araquari.edu.br>
 # Lista de exercícios 2
-
+import math
 def media_final_aprovado_reprovado(p1, p2, ep1, ep2):
     ''' Recebe as notas das 2 provas e 2 exercícios de programação e retorna
     se o aluno foi ou não aprovado. As provas tem peso 7 e os exercícios
@@ -91,11 +91,21 @@ def data_valida(data):
 
 def maior3(a, b, c):
     ''' Recebe tres valores, e retorna o maior dos tres'''
-
+    if a > b and a > c:
+        return a
+    elif b > a and b > c:
+        return b
+    elif c > a and c > b:
+        return c
 
 def menor3(a, b, c):
     ''' Recebe tres valores, e retorna o menor dos tres'''
-
+    if a < b and a < c:
+        return a
+    elif b < a and b < c:
+        return b
+    elif c < a and c < b:
+        return c
 
 def salario(dinheiro_horas, horas_mensais):
     ''' Recebe quanto ganha por hora e quantas horas trabalho ao mês,
@@ -104,6 +114,14 @@ def salario(dinheiro_horas, horas_mensais):
     - INSS é 8% do salário bruto
     - IR é 11% do salário bruto
     - Sindicato é 5% do salário bruto'''
+    salarioBruto = dinheiro_horas * horas_mensais
+    saldiv100 = salarioBruto / 100
+    inss = saldiv100 * 8
+    ir = saldiv100 * 11
+    sindicato = saldiv100 * 5
+    descontoTotal = inss + ir + sindicato
+    salarioLiquido  = salarioBruto - descontoTotal
+    return int(salarioLiquido)
 
 
 def tinta(metros_pintar):
@@ -112,14 +130,25 @@ def tinta(metros_pintar):
     A cobertura da tinta é de 3 metros por litro de tinta
     Cada lata possui 18 litros de tinta'''
 
+    qtdLitros = metros_pintar / 3
+    qtdLatas = qtdLitros  / 18
+    return math.ceil(qtdLatas)
+
 
 def acrescimo_nota_bb(nota_sozinho, nota_com_ajuda):
     ''' Recebe a nota do litle brother antes de receber ajuda, e a nota
     depois que o big brother ajudou, e retorna o acrecimo que o big
      brother recebera em sua nota pela ajuda.
      O acréscimo é de 1/4 da diferença das notas, se for positivo'''
+    if nota_sozinho > nota_com_ajuda :
+        return 0
 
-
+    elif nota_sozinho < nota_com_ajuda:
+        diferenca = nota_com_ajuda - nota_sozinho
+        acrescimo = diferenca / 4
+        acre = f'{acrescimo:.1f}'
+        acre = float(acre)
+        return acre
 # Área de testes: só mexa aqui se souber o que está fazendo!
 acertos = 0
 total = 0
@@ -196,35 +225,35 @@ def main():
     test(data_valida("29/02/2014"), False)
     test(data_valida("29/02/2016"), True)
 
-    # print('Maior de 3 valores:')
-    # test(maior3(1, 2, 3), 3)
-    # test(maior3(1.01, 1.1, 1.02), 1.1)
-    # test(maior3(0, -1, -2), 0)
-    # test(maior3(-100, 0, 100), 100)
+    print('Maior de 3 valores:')
+    test(maior3(1, 2, 3), 3)
+    test(maior3(1.01, 1.1, 1.02), 1.1)
+    test(maior3(0, -1, -2), 0)
+    test(maior3(-100, 0, 100), 100)
 
-    # print('Menor de 3 valores:')
-    # test(menor3(1, 2, 3), 1)
-    # test(menor3(1.01, 1.02, 1.1), 1.01)
-    # test(menor3(0, -1, -2), -2)
-    # test(menor3(-100, 0, 100), -100)
+    print('Menor de 3 valores:')
+    test(menor3(1, 2, 3), 1)
+    test(menor3(1.01, 1.02, 1.1), 1.01)
+    test(menor3(0, -1, -2), -2)
+    test(menor3(-100, 0, 100), -100)
 
-    # print('Salário líquido:')
-    # test(salario(10, 80), 608)
-    # test(salario(100, 30), 2280)
-    # test(salario(2.5, 300), 570)
-    # test(salario(5, 120), 456)
+    print('Salário líquido:')
+    test(salario(10, 80), 608)
+    test(salario(100, 30), 2280)
+    test(salario(2.5, 300), 570)
+    test(salario(5, 120), 456)
 
-    # print('Latas de tinta:')
-    # test(tinta(10), 1)
-    # test(tinta(100), 2)
-    # test(tinta(560), 11)
-    # test(tinta(50001), 926)
+    print('Latas de tinta:')
+    test(tinta(10), 1)
+    test(tinta(100), 2)
+    test(tinta(560), 11)
+    test(tinta(50001), 926)
 
-    # print('Acréscimo BB:')
-    # test(acrescimo_nota_bb(1, 10), 2.2)
-    # test(acrescimo_nota_bb(7, 6), 0.0)
-    # test(acrescimo_nota_bb(0, 10), 2.5)
-    # test(acrescimo_nota_bb(6.9, 7.1), 0.0)
+    print('Acréscimo BB:')
+    test(acrescimo_nota_bb(1, 10), 2.2)
+    test(acrescimo_nota_bb(7, 6), 0.0)
+    test(acrescimo_nota_bb(0, 10), 2.5)
+    test(acrescimo_nota_bb(6.9, 7.1), 0.0)
 
 
 if __name__ == '__main__':

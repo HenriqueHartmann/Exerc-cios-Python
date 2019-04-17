@@ -96,27 +96,38 @@ def caixa_eletronico(valor):
         rst = []
 
     else:
-        n100      = math.floor(valor / 100)
-        resto100  = valor % 100
-        n50       = math.floor(resto100 / 50)
-        resto50   = n50 % 50
-        n25       = math.floor(resto50 / 25)
-        resto25   = n50 % 25
-        n10       = math.floor(resto25 / 10)
-        resto10   = n25 % 10
-        n5        = math.floor(resto10 / 5)
-        resto5    = n10 % 5
-        n1        = math.floor(resto5 / 1)
-
-        if n100 > 1 and n50 > 1 and n25 > 1 and n10 > 1 and n5 > 1 and n1 > 1:
-            rst = [(100, n100), (50, n50), (25, n25), (10, n10), (5, n5), (1, n1)]
-
-        elif n50 > 1 and n25 > 1 and n10 > 1 and n5 > 1 and n1 > 1:
-            rst = [(50, n50), (25, n25), (10, n10), (5, n5), (1, n1)]
-
-
-
+        rst = []
+        n100 = valor // 100
+        para100 = (100, n100)
+        resto100 = valor % 100
+        n50 = resto100 // 50
+        para50 = (50, n50)
+        resto50 = resto100 % 50
+        n25 = resto50 // 25
+        para25 = (25, n25)
+        resto25 = resto50 % 25
+        n10 = resto25 // 10
+        para10 = (10, n10)
+        resto10 = resto25 % 10
+        n5 = resto10 // 5
+        para5 = (5, n5)
+        resto5 = resto10 % 5
+        n1 = resto5 // 1
+        para1 = (1, n1)
+        if n100 != 0:
+            rst.append(para100)
+        if n50 != 0:
+            rst.append(para50)
+        if n25 != 0:
+            rst.append(para25)
+        if n10 != 0:
+            rst.append(para10)
+        if n5 != 0:
+            rst.append(para5)
+        if n1 != 0:
+            rst.append(para1)
     return rst
+
 # Área de testes: só mexa aqui se souber o que está fazendo!
 acertos = 0
 total = 0
@@ -135,40 +146,40 @@ def test(obtido, esperado):
 
 
 def main():
-    # print('Dúzias:')
-    # test(duzias(12), 1)
-    # test(duzias(24), 2)
-    # test(duzias(11), 1)
-    # test(duzias(23), 2)
-    # test(duzias(25), 3)
+    print('Dúzias:')
+    test(duzias(12), 1)
+    test(duzias(24), 2)
+    test(duzias(11), 1)
+    test(duzias(23), 2)
+    test(duzias(25), 3)
 
-    # print('Báskara:')
-    # test(baskara(1, 4, 4), (-2.0,))
-    # test(baskara(1, 5, 4), (-1.0, -4.0))
-    # test(baskara(0, 4, 2), (-0.5,))
-    # test(baskara(4, 4, 4), ())
+    print('Báskara:')
+    test(baskara(1, 4, 4), (-2.0,))
+    test(baskara(1, 5, 4), (-1.0, -4.0))
+    test(baskara(0, 4, 2), (-0.5,))
+    test(baskara(4, 4, 4), ())
 
-    # print('Decompor número:')
-    # test(decompor_numero(2016), ())
-    # test(decompor_numero(326), (3, 2, 6))
-    # test(decompor_numero(320), (3, 2, 0))
-    # test(decompor_numero(310), (3, 1, 0))
-    # test(decompor_numero(305), (3, 0, 5))
-    # test(decompor_numero(300), (3, 0, 0))
-    # test(decompor_numero(100), (1, 0, 0))
-    # test(decompor_numero(101), (1, 0, 1))
-    # test(decompor_numero(311), (3, 1, 1))
-    # test(decompor_numero(111), (1, 1, 1))
-    # test(decompor_numero(12), (0, 1, 2))
-    # test(decompor_numero(25), (0, 2, 5))
-    # test(decompor_numero(20), (0, 2, 0))
-    # test(decompor_numero(10), (0, 1, 0))
-    # test(decompor_numero(21), (0, 2, 1))
-    # test(decompor_numero(11), (0, 1, 1))
-    # test(decompor_numero(16), (0, 1, 6))
-    # test(decompor_numero(1), (0, 0, 1))
-    # test(decompor_numero(7), (0, 0, 7))
-    #
+    print('Decompor número:')
+    test(decompor_numero(2016), ())
+    test(decompor_numero(326), (3, 2, 6))
+    test(decompor_numero(320), (3, 2, 0))
+    test(decompor_numero(310), (3, 1, 0))
+    test(decompor_numero(305), (3, 0, 5))
+    test(decompor_numero(300), (3, 0, 0))
+    test(decompor_numero(100), (1, 0, 0))
+    test(decompor_numero(101), (1, 0, 1))
+    test(decompor_numero(311), (3, 1, 1))
+    test(decompor_numero(111), (1, 1, 1))
+    test(decompor_numero(12), (0, 1, 2))
+    test(decompor_numero(25), (0, 2, 5))
+    test(decompor_numero(20), (0, 2, 0))
+    test(decompor_numero(10), (0, 1, 0))
+    test(decompor_numero(21), (0, 2, 1))
+    test(decompor_numero(11), (0, 1, 1))
+    test(decompor_numero(16), (0, 1, 6))
+    test(decompor_numero(1), (0, 0, 1))
+    test(decompor_numero(7), (0, 0, 7))
+
     print('Caixa eletrônico:')
     test(caixa_eletronico(100), [(100, 1)])
     test(caixa_eletronico(200), [(100, 2)])

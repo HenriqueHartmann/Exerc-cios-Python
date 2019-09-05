@@ -37,7 +37,7 @@ def test(obtido, esperado):
     global acertos, total
     total += 1
     if obtido != esperado:
-        prefixo = '\033[31m%s' %('Falhou')
+        prefxo = '\033[31m%s' %('Falhou')
     else:
         prefixo = '\033[32m%s' %('Passou')
         acertos += 1

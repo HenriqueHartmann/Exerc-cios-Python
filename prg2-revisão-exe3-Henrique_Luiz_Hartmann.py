@@ -4,7 +4,10 @@ def abrevia_nome(nome_completo):
     nomes = nome_completo.split(" ")
     count = len(nomes)
     for i,nome in enumerate(nomes):
-        if i != 0 and i != (count -1):
+        if len(nome) <= 3:
+            nomes[i] = ''
+        elif i != 0 and i != (count -1):
             nomes[i] = nome[0]
-    return " ".join(nomes)      
-print(abrevia_nome(nome_completo))        
+    nomes = filter(None, nomes)
+    return " ".join(nomes)
+print(abrevia_nome(nome_completo))

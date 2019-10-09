@@ -1,7 +1,7 @@
-data = '08/10/2019'
+data = '01/11/2019'
 
 def data_extensao(data):
-    dd,mm,aaaa = data.split("/")
+    dd, mm, aaaa = data.split("/")
     mesExt = [
         'de janeiro de',
         'de fevereiro de',
@@ -16,6 +16,7 @@ def data_extensao(data):
         'de novembro de',
         'de dezembro de'
     ]
-    mm = (int(mm)) -1
+    mm = (int(mm)) - 1
     return '{} {} {}'.format(dd, mesExt[mm], aaaa)
+
 print(data_extensao(data))
